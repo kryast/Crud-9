@@ -6,6 +6,6 @@ type ArticleHandler struct {
 	service services.ArticleService
 }
 
-func NewArticleService(service services.ArticleService) *ArticleHandler {
+func NewArticleHandler(service services.ArticleService) *ArticleHandler {
 	return &ArticleHandler{service}
 }
