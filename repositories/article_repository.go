@@ -10,6 +10,7 @@ type ArticleRepository interface {
 	GetAll() ([]models.Article, error)
 	GetByID(id uint) (*models.Article, error)
 	Update(article *models.Article) error
+	Delete(id uint) error
 }
 
 type articleRepository struct {
@@ -38,4 +39,8 @@ func (ar *articleRepository) GetByID(id uint) (*models.Article, error) {
 
 func (ar *articleRepository) Update(article *models.Article) error {
 	return ar.db.Save(article).Error
+}
+
+func (ar *articleRepository) Delete(id uint) error {
+	return ar.db.Delete(&models.Article{}, id).Error
 }

@@ -22,3 +22,6 @@ curl -X PUT http://localhost:8080/articles/1 \
     "content": "Update: Golang sangat cocok untuk backend services.",
     "author": "Ahmad"
 }'
+
+DELETE
+curl -X DELETE http://localhost:8080/articles/1
