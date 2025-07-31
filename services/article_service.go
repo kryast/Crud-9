@@ -7,6 +7,8 @@ import (
 
 type ArticleService interface {
 	Create(article *models.Article) error
+	GetAll() ([]models.Article, error)
+	GetByID(id uint) (*models.Article, error)
 }
 
 type articleService struct {
@@ -17,6 +19,14 @@ func NewArticleService(repo repositories.ArticleRepository) ArticleService {
 	return &articleService{repo}
 }
 
-func (a *articleService) Create(article *models.Article) error {
-	return a.repo.Create(article)
+func (as *articleService) Create(article *models.Article) error {
+	return as.repo.Create(article)
+}
+
+func (as *articleService) GetAll() ([]models.Article, error) {
+	return as.repo.GetAll()
+}
+
+func (as *articleService) GetByID(id uint) (*models.Article, error) {
+	return as.repo.GetByID(id)
 }

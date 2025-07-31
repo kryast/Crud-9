@@ -7,6 +7,8 @@ import (
 
 type ArticleRepository interface {
 	Create(article *models.Article) error
+	GetAll() ([]models.Article, error)
+	GetByID(id uint) (*models.Article, error)
 }
 
 type articleRepository struct {
@@ -17,6 +19,18 @@ func NewArticleRepository(db *gorm.DB) ArticleRepository {
 	return &articleRepository{db}
 }
 
-func (a *articleRepository) Create(article *models.Article) error {
-	return a.db.Create(article).Error
+func (ar *articleRepository) Create(article *models.Article) error {
+	return ar.db.Create(article).Error
+}
+
+func (ar *articleRepository) GetAll() ([]models.Article, error) {
+	var articles []models.Article
+	err := ar.db.Find(&articles).Error
+	return articles, err
+}
+
+func (ar *articleRepository) GetByID(id uint) (*models.Article, error) {
+	var article models.Article
+	err := ar.db.First(&article, id).Error
+	return &article, err
 }

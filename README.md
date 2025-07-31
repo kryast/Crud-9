@@ -8,3 +8,8 @@ curl -X POST http://localhost:8080/articles \
     "content": "Golang itu bahasa pemrograman yang cepat dan efisien.",
     "author": "Ahmad Syarifuddin"
 }'
+
+
+GET
+curl http://localhost:8080/articles
+curl http://localhost:8080/articles/1

@@ -16,5 +16,8 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	h := handlers.NewArticleHandler(svc)
 
 	r.POST("/article", h.Create)
+	r.GET("/article", h.GetAll)
+	r.GET("/article/:id", h.GetByID)
+
 	return r
 }
