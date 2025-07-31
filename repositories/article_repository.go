@@ -9,6 +9,7 @@ type ArticleRepository interface {
 	Create(article *models.Article) error
 	GetAll() ([]models.Article, error)
 	GetByID(id uint) (*models.Article, error)
+	Update(article *models.Article) error
 }
 
 type articleRepository struct {
@@ -33,4 +34,8 @@ func (ar *articleRepository) GetByID(id uint) (*models.Article, error) {
 	var article models.Article
 	err := ar.db.First(&article, id).Error
 	return &article, err
+}
+
+func (ar *articleRepository) Update(article *models.Article) error {
+	return ar.db.Save(article).Error
 }

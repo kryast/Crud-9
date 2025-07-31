@@ -13,3 +13,12 @@ curl -X POST http://localhost:8080/articles \
 GET
 curl http://localhost:8080/articles
 curl http://localhost:8080/articles/1
+
+PUT
+curl -X PUT http://localhost:8080/articles/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Belajar Golang Update",
+    "content": "Update: Golang sangat cocok untuk backend services.",
+    "author": "Ahmad"
+}'

@@ -48,3 +48,13 @@ func (ah *ArticleHandler) GetByID(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, article)
 }
+
+func (ah *ArticleHandler) Update(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	article, err := ah.service.GetByID(uint(id))
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Article not found"})
+		return
+	}
+	c.JSON(http.StatusOK, article)
+}
